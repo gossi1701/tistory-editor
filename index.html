@@ -1,5 +1,49 @@
----
-layout: index
----
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title>TistoryEditor</title>
+	<style>
+	.title { text-align: center;}
+	.box-download { display:none; width:800px; margin: 10px auto 50px; text-align:center }
+	.box-download .screenshot { max-width:100% }
+	.box-download .btn-download { display:inline-block; padding:10px 20px; border:1px solid #999; background:#eee; text-decoration: none; color:#333 }
+	</style>
+</head>
+<body>
+  <h1 class="title">Tistory Editor</h1>
+  <div class="box-download windows">
+		<figure>
+    	<img class="screenshot" src="image/screenshot_windows.png">
+		</figure>
+    <a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.1.1/TistoryEditor.Setup.0.1.1.exe">Download Windows Setup</a>
+  </div>
 
-<h1>Editor for Tistory</h1>
+  <div class="box-download linux">
+		<figure>
+    	<img class="screenshot" src="image/screenshot_linux.png">
+		</figure>
+    <a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.1.1/tistory-editor-0.1.1-x86_64.AppImage">Download Linux AppImage</a>
+  </div>
+
+  <div class="box-download mac">
+		<figure>
+    	<img class="screenshot" src="image/screenshot_mac.png">
+		</figure>
+    <a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.1.1/TistoryEditor-0.1.1.dmg">Download Dmg</a>
+  </div>
+
+  <script>
+  (function() {
+    if (navigator.userAgent.match(/linux/i)) {
+			document.getElementsByClassName("linux")[0].style.display = "block";
+    } else if (navigator.userAgent.match(/windows/i)) {
+			document.getElementsByClassName("windows")[0].style.display = "block";
+    } else {
+			document.getElementsByClassName("mac")[0].style.display = "block";
+		}
+
+
+  })();
+  </script>
+</body>
+</html>
