@@ -25,9 +25,12 @@
   body { background:#EDE6D5 linear-gradient(#EDE6D5, #F5F5ED) repeat scroll 0% 0%; margin:0; color:#3F3B3B }
 	.title { text-align: center; font-size:64px; margin:0; padding:1.5em 0 1em }
   .container { width:700px; margin:0 auto }
-	.box-download { display:none; margin: 10px auto 100px; text-align:center }
+	.windows, .linux, .mac { display:none }
+	.box-download { margin: 10px auto 100px; text-align:center }
 	.box-download .screenshot { max-width:100%; box-shadow:0 10px 20px #777 }
-	.box-download .btn-download { display:inline-block; padding:20px; border:0; background:#f1631b; text-decoration: none; color:#fff; margin: 10px 0 50px }
+	.box-download .btn-download { display:inline-block; padding:20px; border:0; background:#f1631b; text-decoration: none; color:#fff; }
+	.box-download .info { margin: 5px 0 50px }
+	.box-download .info a { text-decoration: none; color:#f1631b}
   footer { background:#434342; color:#888; padding:15px 0; font-size:14px; height:22px }
   footer .right-pane { float:right }
   footer a { text-decoration: none; color:#888; margin-right:10px }
@@ -37,23 +40,31 @@
 </head>
 <body>
   <h1 class="title"></span>Tistory Editor</h1>
-  <div class="container box-download windows">
-    <a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.1.2/TistoryEditor.Setup.0.1.2.exe">Download Windows Setup</a>
-		<figure>
+
+	<div class="container box-download">
+		<div class="windows">
+			<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.2.1/TistoryEditor.Setup.0.2.1.exe">Download Windows Setup</a>
+		</div>
+		<div class="linux">
+			<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.2.1/tistory-editor-0.2.1-x86_64.AppImage">Download Linux AppImage</a>
+		</div>
+		<div class="mac">
+			<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.2.1/TistoryEditor-0.2.1.dmg">Download Dmg</a>
+		</div>
+
+		<div class="info">
+			last version: <a href="https://github.com/joostory/tistory-editor/releases/latest">0.2.1</a>
+		</div>
+
+		<figure class="windows">
     	<img class="screenshot" src="image/screenshot_windows.png">
 		</figure>
-  </div>
 
-  <div class="container box-download linux">
-    <a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.1.2/tistory-editor-0.1.2-x86_64.AppImage">Download Linux AppImage</a>
-		<figure>
+		<figure class="linux">
     	<img class="screenshot" src="image/screenshot_linux.png">
 		</figure>
-  </div>
 
-  <div class="container box-download mac">
-    <a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/0.1.2/TistoryEditor-0.1.2.dmg">Download Dmg</a>
-		<figure>
+		<figure class="mac">
     	<img class="screenshot" src="image/screenshot_mac.png">
 		</figure>
   </div>
@@ -76,12 +87,19 @@
 
   <script>
   (function() {
+		var showBox = function(boxes) {
+			var i;
+			for(i = 0 ; i < boxes.length ; i++) {
+				boxes[i].style.display = "block"
+			}
+		}
+
     if (navigator.userAgent.match(/linux/i)) {
-      document.getElementsByClassName("linux")[0].style.display = "block";
+      showBox(document.getElementsByClassName("linux"));
     } else if (navigator.userAgent.match(/windows/i)) {
-      document.getElementsByClassName("windows")[0].style.display = "block";
+      showBox(document.getElementsByClassName("windows"));
     } else {
-      document.getElementsByClassName("mac")[0].style.display = "block";
+      showBox(document.getElementsByClassName("mac"));
     }
   })();
   </script>
