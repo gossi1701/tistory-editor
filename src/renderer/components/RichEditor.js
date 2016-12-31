@@ -1,12 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { ipcRenderer } from 'electron'
-import Quill from 'quill'
-
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-
-
-let quillInstance;
+import TinyMCE from 'react-tinymce'
 
 class RichEditor extends Component {
 
@@ -29,41 +23,39 @@ class RichEditor extends Component {
 
   handleFinishUploadFile(e, fileUrl) {
 		console.log("finishUploadFile", fileUrl)
-    let range = quillInstance.getSelection()
-    quillInstance.insertEmbed(range.index, 'image', fileUrl)
+		tinymce.getEditor("tinymce").execCommand('mceInsertContent',false,'<img src="'+fileUrl+'" />');
 	}
 
-  componentDidMount() {
-    const { container } = this.refs
-    const { value } = this.state
-
-    let options = {
-      module: {
-        toolbar: false
-      },
-      theme: 'bubble'
-    }
-
-    quillInstance = new Quill(container, options)
-  }
-
   getContent() {
-    return quillInstance.root.innerHTML
+    return this.state.value
   }
 
-  updateContent(value) {
-    if (quillInstance) {
-      quillInstance.setText(value)
-    }
-  }
+	handleChange(e) {
+		this.setState({
+			value: e.target.getContent()
+		})
+	}
 
   render() {
-    const { value } = this.state
+    const { value } = this.props
 
     return (
-      <div className="Quill">
-        <div ref="container" dangerouslySetInnerHTML={{__html:value}} />
-      </div>
+			<div className="tinymce">
+	      <TinyMCE id="tinymce"
+					content={value}
+				 	config={{
+						plugins: 'link media table textcolor contextmenu hr preview',
+	          toolbar: 'styleselect bold italic forecolor | alignleft aligncenter alignright outdent indent | bullist numlist table | link image media',
+						contextmenu: "link",
+						menubar: "",
+						resize: false,
+						statusbar: false,
+						height: '100%',
+						file_picker_types: 'image'
+					}}
+					onDrop={(e) => {console.log(e)}}
+					onChange={this.handleChange.bind(this)} />
+			</div>
     )
   }
 }

@@ -1,6 +1,6 @@
 input, button, a { outline:none }
 
-.container { position:absolute; left:0; right:0; top:0; bottom:0 }
+.container { position:absolute; left:0; right:0; top:0; bottom:0; overflow:hidden }
 .btn { background:transparent; border:1px solid #ccc }
 .btn:hover { background:#eee }
 
@@ -89,7 +89,7 @@ input, button, a { outline:none }
 .viewer .viewer_tags { display: flex; flex-wrap: wrap; margin: 20px }
 
 .editor { width:100%; height:100% }
-.editor .Quill,
+.editor .tinymce,
 .editor .ReactCodeMirror { position: absolute; top: 56px; bottom: 0; left: 0; right: 0 }
 .editor .CodeMirror { height: 100%; padding:0 10px }
 .editor .statusbar { position: absolute; top: 0; height: 50px; left: 0; right: 0; background:#ddd; }
@@ -104,3 +104,10 @@ input, button, a { outline:none }
 .editor .statusbar .btn_wrap .btn_info { margin-right:5px; border-radius:15px }
 .editor .info_box { position:absolute; top:70px; left:50%; width:500px; height:300px; margin-left:-250px; background:#fff; box-shadow: #333 0 1px 10px; border-radius:5px; z-index:10 }
 .editor .cover { position:absolute; top:50px; bottom:0; left:0; right:0; background:#333; opacity:0.7; z-index:9 }
+
+/* tinymce */
+.mce-tinymce { border:0 !important }
+.mce-tinymce, .mce-container-body, #code_ifr { min-height: 100% !important }
+.mce-container-body { position: absolute; bottom: 0; left: 0; right: 0 }
+.mce-container-body .mce-edit-area { position: absolute; top: 36px; bottom: 0; left: 0; right: 0 }
+.mce-tinymce .mce-statusbar { position: absolute; bottom: 0; left: 0; right: 0 }
